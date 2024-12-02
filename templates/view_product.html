@@ -3,41 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
+    <title>View Products</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Product List</h1>
-    <a href="/create_product">Add New Product</a>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Actions</th>
-        </tr>
-        {% for product in products %}
-        <tr>
-            <td>{{ product.name }}</td>
-            <td>{{ product.description }}</td>
-            <td>${{ product.price }}</td>
-            <td>{{ product.quantity }}</td>
-            <td>
-                <a href="/update_product/{{ product._id }}">Edit</a>
-                <form action="/delete_product/{{ product._id }}" method="POST" style="display:inline;">
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    <div>
-        {% if current_page > 1 %}
-        <a href="/products?page={{ current_page - 1 }}">Previous</a>
-        {% endif %}
-        {% if current_page < total_pages %}
-        <a href="/products?page={{ current_page + 1 }}">Next</a>
-        {% endif %}
+    <div class="container mt-4">
+        <h1 class="text-center">Product List</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product['name'] }}</td>
+                    <td>{{ product['price'] }}</td>
+                    <td>{{ product['stock'] }}</td>
+                    <td>{{ product['description'] }}</td>
+                    <td>
+                        <a href="/update_product/{{ product['_id'] }}" class="btn btn-warning">Edit</a>
+                        <a href="/delete_product/{{ product['_id'] }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <!-- Pagination -->
+        <nav>
+            <ul class="pagination justify-content-center">
+                {% for page_num in range(1, total_pages + 1) %}
+                    <li class="page-item {% if page_num == page %}active{% endif %}">
+                        <a class="page-link" href="/products?page={{ page_num }}">{{ page_num }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
     </div>
 </body>
 </html>
