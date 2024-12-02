@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+</head>
+<body>
+    <h1>Product List</h1>
+    <a href="/create_product">Add New Product</a>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>${{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>
+                <a href="/update_product/{{ product._id }}">Edit</a>
+                <form action="/delete_product/{{ product._id }}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div>
+        {% if current_page > 1 %}
+        <a href="/products?page={{ current_page - 1 }}">Previous</a>
+        {% endif %}
+        {% if current_page < total_pages %}
+        <a href="/products?page={{ current_page + 1 }}">Next</a>
+        {% endif %}
+    </div>
+</body>
+</html>
