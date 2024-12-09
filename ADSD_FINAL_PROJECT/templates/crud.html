@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REAL-TIME INVENTORY MANAGEMENT SYSTEM WITH ALERTS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .btn-action {
+            background-color: #2196F3;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .btn-action:hover {
+            background-color: #1976D2;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>REAL-TIME INVENTORY MANAGEMENT SYSTEM</h1>
+
+        <div>
+            <a href="/add_product" class="btn-action">Add New Product</a>
+            <a href="/" class="btn-action">Back to Dashboard</a>
+        </div>
+
+        <h2>Product List</h2>
+        <table>
+            <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Stock Level</th>
+                <th>Reorder Level</th>
+                <th>Store</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.product_id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.stock_level }}</td>
+                <td>{{ product.reorder_level }}</td>
+                <td>{{ product.store }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <a href="{{ url_for('update_product', product_id=product._id) }}">Update</a> |
+                    <a href="{{ url_for('delete_product', product_id=product._id) }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="footer">
+            <p>Powered by <a href="https://www.kent.edu">Kent State University</a></p>
+        </div>
+    </div>
+</body>
+</html>
