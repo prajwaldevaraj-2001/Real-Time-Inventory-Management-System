@@ -1,0 +1,92 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Inventory Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Top Section -->
+    <div class="top-section">
+        <header>
+            <h1>REAL-TIME INVENTORY MANAGEMENT SYSTEM</h1>
+        </header>
+
+        <div class="university-name">
+            <h2>KENT STATE UNIVERSITY, OHIO, USA</h2>
+            <h3>Under the guidance of Instructor: Dr. Gregory S. Delozier</h3>
+        </div>
+    </div>
+
+    <!-- Middle Section -->
+    <div class="middle-section">
+        <div class="create-view-maps">
+            <h3>Actions</h3>
+            <div class="buttons">
+                <a href="/add_product" class="btn-action">Create Product</a>
+                <a href="/view_products" class="btn-action">View Products</a>
+                <a href="/operations" class="btn-action">Operations</a> <!-- New Operations Button -->
+            </div>
+            <div class="maps">
+                <h3>Maps of Product Purchases:</h3>
+                <div class="map-buttons">
+                    <a href="https://www.walmart.com" class="btn-map" target="_blank">Walmart</a>
+                    <a href="https://www.drugmart.com" class="btn-map" target="_blank">Drug Mart</a>
+                    <a href="https://www.acmefreshmarket.com" class="btn-map" target="_blank">Acme Fresh Market</a>
+                    <a href="https://www.basicneed.com" class="btn-map" target="_blank">Basic Need</a>
+                    <a href="https://www.foodrestaurants.com" class="btn-map" target="_blank">All Food Restaurants</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meet Our Team Members -->
+        <div class="team-members">
+            <h4>Meet Our Team</h4>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h5>PRAJWAL DEVARAJ (811351381)</h5>
+                    <button class="btn-info" onclick="showInfo('prajwal')">Show Role</button>
+                    <div class="info" id="prajwal" style="display:none;">
+                        <p>Role: Database & Backend Developer</p>
+                        <p>Tasks: Built the backend system to store and manage product data using MongoDB and Flask. Made sure the system can handle adding, updating, viewing, and deleting products.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <h5>SAI SUPRIYA LOKAM (811284283)</h5>
+                    <button class="btn-info" onclick="showInfo('sai')">Show Role</button>
+                    <div class="info" id="sai" style="display:none;">
+                        <p>Role: Frontend Developer</p>
+                        <p>Tasks: Designed the website’s pages to show product details in tables. Made the site look nice and work well on different devices..</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <h5>KHYATHI SWAROOP PATHANGAY (811355978)</h5>
+                    <button class="btn-info" onclick="showInfo('khyathi')">Show Role</button>
+                    <div class="info" id="khyathi" style="display:none;">
+                        <p>Role: Real-time & Notification Developer</p>
+                        <p>Tasks: Connected the website to the backend so changes show up instantly. Added login features to keep the system secure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Real-Time Inventory Management System with Alert. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function showInfo(id) {
+            var infoDiv = document.getElementById(id);
+            if (infoDiv.style.display === "none") {
+                infoDiv.style.display = "block";
+            } else {
+                infoDiv.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

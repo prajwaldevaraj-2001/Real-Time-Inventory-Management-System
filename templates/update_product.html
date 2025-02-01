@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REAL-TIME INVENTORY MANAGEMENT SYSTEM WITH ALERTS</title>
+    <style>
+        /* Keep the style as is */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        h2 {
+            text-align: left;
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 24px; /* Added font size for consistency */
+            font-weight: bold; /* Bold font for emphasis */
+        }
+        form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        label {
+            font-size: 14px;
+            color: #555;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="password"],
+        select {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 100%;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #007BFF;
+        }
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .form-buttons .btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 30%;
+            display: block;
+        }
+        .form-buttons .btn-update {
+            background-color: #28a745;
+            color: white;
+        }
+        .form-buttons .btn-clear {
+            background-color: #dc3545;
+            color: white;
+        }
+        .form-buttons .btn-dashboard {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>REAL-TIME INVENTORY MANAGEMENT SYSTEM</h1>
+        <h2>Update Product</h2>
+        
+        {% if error_message %}
+            <div class="error">
+                {{ error_message }}
+            </div>
+        {% endif %}
+
+        <form action="/update_product/{{ product._id }}" method="POST">
+            <label for="id">Product ID:</label>
+            <input type="text" id="id" name="id" value="{{ product.product_id }}" required readonly>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ product.name }}" required>
+
+            <label for="stock_level">Stock Level:</label>
+            <input type="number" id="stock_level" name="stock_level" value="{{ product.stock_level }}" required>
+
+            <label for="reorder_level">Reorder Level:</label>
+            <input type="number" id="reorder_level" name="reorder_level" value="{{ product.reorder_level }}" required>
+
+            <label for="store">Store:</label>
+            <select id="store" name="store" required>
+                <option value="">--Select Store--</option>
+                <option value="Walmart" {% if product.store == 'Walmart' %}selected{% endif %}>Walmart</option>
+                <option value="Drug Mart" {% if product.store == 'Drug Mart' %}selected{% endif %}>Drug Mart</option>
+                <option value="Acme Fresh Market" {% if product.store == 'Acme Fresh Market' %}selected{% endif %}>Acme Fresh Market</option>
+                <option value="Basic Needs" {% if product.store == 'Basic Needs' %}selected{% endif %}>Basic Needs</option>
+                <option value="Food Restaurants" {% if product.store == 'Food Restaurants' %}selected{% endif %}>Food Restaurants</option>
+            </select>
+
+            <label for="price">Price (USD):</label>
+            <input type="number" id="price" name="price" value="{{ product.price }}" required>
+
+            <label for="password">Password for validation:</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="form-buttons">
+                <input type="submit" class="btn btn-update" value="Update Product">
+                <a href="{{ url_for('operations') }}" class="btn btn-dashboard">Back to Dashboard</a>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <p>Powered by <a href="https://www.kent.edu" target="_blank">Kent State University</a></p>
+    </footer>
+</body>
+</html>
