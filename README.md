@@ -4,7 +4,7 @@ This project is a Real-Time Inventory Management System developed using MongoDB,
 
 ## Project Structure
 
-```plaintext
+
 Real-Time-Inventory-Management-System/
 │
 ├── app.py                      # Main Flask application file
@@ -24,7 +24,7 @@ Real-Time-Inventory-Management-System/
 └── requirements.txt            # Python dependencies
 
 
-Features
+## Features
 User Authentication: Password-based validation for updating and deleting products.
 CRUD Operations:
 Create: Add new products to the inventory.
