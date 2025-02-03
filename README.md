@@ -6,7 +6,7 @@ This project is a **Real-Time Inventory Management System** developed using **Mo
 
 - **User Authentication**: Password-based validation for updating and deleting products.
   
-### CRUD Operations:
+## CRUD Operations:
 - **Create**: Add new products to the inventory.
 - **Read**: View the list of all products stored in the inventory.
 - **Update**: Modify product details, such as stock level, price, and reorder level.
@@ -26,7 +26,7 @@ This project is a **Real-Time Inventory Management System** developed using **Mo
 
 To run this project locally, follow these steps:
 
-### Clone the repository:
+## Clone the repository:
 git clone https://github.com/prajwaldevaraj-2001/project.git
 
 ## Install dependencies:
@@ -50,7 +50,7 @@ Dashboard
 - Interactive Maps: Links to maps for stores like Walmart and Acme Fresh Market.
 - Team Members Section: Introduces the project team and displays their roles and tasks.
 
-# CRUD Operations
+## CRUD Operations
 - Create (Add Product):
 - Navigate to the Add Product page and fill out the product form. If a product already exists, an error message will appear.
 
